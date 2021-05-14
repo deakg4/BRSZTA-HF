@@ -2,6 +2,8 @@ package hu.bme.mit.brszta;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 
@@ -12,20 +14,20 @@ public class Board {
     private int numLinesRemoved;
     private final int BOARD_WIDTH = 10;
     private final int BOARD_HEIGHT = 20;
-    private final int PERIOD_INTERVAL = 300;
 
     private boolean isFallingFinished;
     private boolean isPaused = false;
-    private int[][] position;
 
     private Shape curPiece;
-    private Timer timer;
+    private List<Integer> shapeBuffer = new ArrayList<>();
+    private List<Integer> shapeRotationBuffer = new ArrayList<>();
+
     private int[][] BOARDMATRIX = new int[BOARD_HEIGHT][BOARD_WIDTH];
 
-    public Board() {
-        position = new int[curX][curY];
-    }
-
+    private int index;
+    private int rotationIndex;
+    private int nextIndex;
+    private int nextRotationIndex;
     public int getBoardWidth(){
         System.out.println("Debug, Board o, getBoardWidth fgv:");
         return BOARD_WIDTH;
@@ -34,6 +36,7 @@ public class Board {
         System.out.println("Debug, Board o, getBoardHeight fgv:");
         return BOARD_HEIGHT;
     }
+
 
     private TestGUI testGUI;
     public void setTestGUI(TestGUI gui){
@@ -71,16 +74,42 @@ public class Board {
         return arrBoard;
     }
 
+    void stop(){
+        BOARDMATRIX = new int[BOARD_HEIGHT][BOARD_WIDTH];
+        numLinesRemoved = 0;
+    }
+
+    void restart(){
+        stop();
+        start();
+    }
+
     void start(){
         System.out.println("Debug, Board o, start fgv:");
         curPiece = new Shape();
+        generateRandomShapes(20);
         addRandomShape();
-
-
-        //timer = new Timer(PERIOD_INTERVAL, new GameCycle());
-        //timer.start();
+        System.out.println("index: " + index);
     }
 
+    void generateRandomShapes(int numOfGenerates) {
+        for (int i = 1; i <= numOfGenerates; i++) {
+            var r = new Random();
+            int x = Math.abs(r.nextInt()) % 4;
+            int y = Math.abs(r.nextInt()) % 7 + 1;
+            shapeBuffer.add(y);
+            shapeRotationBuffer.add(x);
+            //System.out.println("shapeBuffer: " + y);
+            //System.out.println("shapeRotationBuffer: " + x);
+
+        }
+        /*
+        System.out.println("lastshapeBuffer: " + shapeBuffer.get(shapeBuffer.size()-1));
+        System.out.println("lastshapeRotationBuffer: " + shapeRotationBuffer.get(shapeRotationBuffer.size()-1));
+        System.out.println("lastshapeBufferindex: " + (shapeBuffer.size()-1));
+        System.out.println("lastshapeRotationBufferindex: " + (shapeRotationBuffer.size()-1));
+         */
+    }
     public int getNumLinesRemoved(){
         return numLinesRemoved;
     }
@@ -90,21 +119,34 @@ public class Board {
         //DEBUG
         System.out.println("Debug, Board o, addRandomShape fgv");
         //DEBUG
+
         curX = BOARD_WIDTH/2;
         curY = 0;
-        curPiece.setRandomShape();
-        var r = new Random();
-        int x = Math.abs(r.nextInt()) % 3;
+        //Hozzáad egy új random shapet
+        generateRandomShapes(1);
+        //A setRandomShapet kicserélem egy setShape fgv-re mert itt a boardban generálom le a shape számát
+        //curPiece.setRandomShape();
+        index = shapeBuffer.get(0);
+        rotationIndex = shapeRotationBuffer.get(0);
+        nextIndex = shapeBuffer.get(1);
+        nextRotationIndex = shapeRotationBuffer.get(1);
+
+        //Beállítja az új beírando shapet a 0 indexen lévő számra
+        curPiece.setShape(index);
+        //Ezzel a remove-val kitörlöm a 0 indexen lévő számot.
+        shapeBuffer.remove(0);
+        shapeRotationBuffer.remove(0);
+        //index = curPiece.getShapeIndex();
+        //curPiece.setShape(index);
+        //var r = new Random();
+        //int x = Math.abs(r.nextInt()) % 3 + 1;
         if (tryAddShape(curX,curY)){
             addShape(curX, curY);
-            rotateShape(x);
-            curPiece.setShapeRotationBuffer(x);
+            rotateShape(rotationIndex);
+            //curPiece.setShapeRotationBuffer(rotationIndex);
         }else {
             System.out.println("Játék vége nem lehetett elhelyezni az alakzatot");
         }
-
-
-
     }
 
     private boolean tryAddShape(int x, int y){
@@ -130,13 +172,6 @@ public class Board {
         }
     }
 
-    private void doGameCycle(){
-        System.out.println("Debug, Board o, doGameCycle fgv");
-        update();
-        //a megrajzoláshoz majd a közös munkánál jutunk el
-        //repaint();
-    }
-
     public void update(){
         System.out.println("Debug, Board o, update fgv:");
         if (isPaused){
@@ -149,6 +184,8 @@ public class Board {
         }else {
             oneLineDown();
         }
+        testGUI.setTfNextShape(nextIndex);
+        testGUI.setTfNextShapeRotation(nextRotationIndex);
     }
 
     public void addShape(int x, int y) {
@@ -166,13 +203,9 @@ public class Board {
         curX = x;
         curY = y;
         //DEBUG
-        for(int i = 0; i< 20;i++) {
-            for (int j = 0; j < 10; j++) {
-                System.out.print(BOARDMATRIX[i][j]);
-            }
-            System.out.println();
-        }
+        /*
 
+         */
         //DEBUG-END
 
     }
@@ -348,17 +381,6 @@ public class Board {
         }
     }
 
-    /*private void deleteLines(List<Integer> arrFullLines){
-        System.out.println("Debug, Board o, deleteLines fgv");
-        for (int i = 0; i < arrFullLines.size(); i++) {
-            for (int j = 0; j <= BOARD_WIDTH - 1; j++) {
-                //kinullázza az egész sort/sorokat fentről lefelé haladva
-                BOARDMATRIX[arrFullLines.get(i)][j] = 0;
-            }
-            //azok a sorok amik az eltávolított sor felett vannak egyel lejebb kerülnek
-            copyLinesBelow(arrFullLines.get(i));
-        }
-    }*/
     private void deleteLines(int numFullLine){
         System.out.println("Debug, Board o, deleteLines fgv");
             for (int j = 0; j <= BOARD_WIDTH - 1; j++) {
@@ -369,25 +391,7 @@ public class Board {
             copyLinesBelow(numFullLine);
         }
 
-    /*private void copyLinesBelow(int arrFullLine){
-        System.out.println("Debug, Board o, deleteLines fgv");
-        //Lejjebb kell másolni a sorokat amik az átadott int felett találhatóak.
-        int [][] tempBoard = new int[BOARD_HEIGHT - arrFullLine][BOARD_WIDTH];
 
-
-        for (int i = 0; i < arrFullLine; i++){
-            for (int j = 0; j < BOARD_WIDTH; j++){
-                tempBoard[i][j] = BOARDMATRIX[i][j];
-                BOARDMATRIX[i][j] = 0;
-            }
-        }
-
-        for (int i = 0; i < arrFullLine; i++){
-            for (int j = 0; j < BOARD_WIDTH; j++){
-                BOARDMATRIX[i+1][j] = tempBoard[i][j];
-            }
-        }
-    }*/
     private void copyLinesBelow(int numFullLine){
         System.out.println("Debug, Board o, deleteLines fgv");
         //Lejjebb kell másolni a sorokat amik az átadott int felett találhatóak.
@@ -408,10 +412,12 @@ public class Board {
         removeFullLines();
     }
 
-    private class GameCycle implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e){
-            doGameCycle();
+    void printDebugger(){
+        for(int i = 0; i< 20;i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.print(BOARDMATRIX[i][j]);
+            }
+            System.out.println();
         }
     }
 }

@@ -10,7 +10,7 @@ public class Shape {
         NoShape, TShape, LShape, MirroredLShape, LineShape,
         SquareShape, ZShape, SShape
     }
-    private List<Integer> shapeBuffer = new ArrayList<>();
+
     private List<Integer> shapeRotationBuffer = new ArrayList<>();
     //Az alakzat koordinátái a mátrixban
     private int[][] coords;
@@ -29,18 +29,13 @@ public class Shape {
     public Shape() {
         coords = new int[4][4];
         tempCoords = new int[4][4];
-        setShape(index);
-    }
-
-    public int getShapeRotation(){
-        return shapeRotaion;
     }
 
     public void setRandomShape(){
         //Beállít egy random alakzatot
         var r = new Random();
         int x = Math.abs(r.nextInt()) % 7 + 1;
-        shapeBuffer.add(x);
+        index = x;
         setShape(x);
     }
 
@@ -57,12 +52,7 @@ public class Shape {
         return maxY();
     }
 
-    public int getShapeRotaion(){
-        //Visszaad egy integert ami megadja hányszor lett elforgatva az alakzat az eredetihez képest
-        return shapeRotaion;
-    }
-
-    public int getShapeIndex(){
+    public int getNextShapeIndex(){
         //Visszaadja a Shape indexét 1-től 7-ig vannak indexelve
         return index;
     }
@@ -138,7 +128,6 @@ public class Shape {
 
         for (int i = 0; i < maxY-minY+1; i++){
             for (int j = 0; j < maxX-minX+1; j++){
-                // coords[i][j] =
                 newCoords[i][j] = coords[i+minY][j+minX];
                 //System.out.println(coords[i][j]);
             }

@@ -15,8 +15,11 @@ public class TestGUI extends JFrame {
     private JButton pauseButton;
     private JTextField tfNextShape;
     private JTextField tfNextShapeRotation;
+    private JButton restartButton;
 
     private Board board = new Board();
+
+
 
     public TestGUI(String title){
         super(title);
@@ -25,14 +28,24 @@ public class TestGUI extends JFrame {
         this.pack();
 
 
+
         board.start();
 
         board.setTestGUI(this);
+
+        restartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                board.restart();
+                board.printDebugger();
+            }
+        });
 
         pauseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 board.pause();
+                board.printDebugger();
             }
         });
 
@@ -40,6 +53,7 @@ public class TestGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 board.moveShape(1,0);
+                board.printDebugger();
             }
         });
 
@@ -47,6 +61,7 @@ public class TestGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 board.moveShape(-1,0);
+                board.printDebugger();
             }
         });
 
@@ -54,6 +69,7 @@ public class TestGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 board.rotateShape(1);
+                board.printDebugger();
             }
         });
 
@@ -64,16 +80,11 @@ public class TestGUI extends JFrame {
                 //Ez egy olyan getter ami átveszi a boardot.
                 int [][] BOARDMATRIX = board.getBoard();
                 System.out.println("Action Listener down Button:");
-                for(int i = 0; i< 20;i++) {
-                    for (int j = 0; j < 10; j++) {
-                        System.out.print(BOARDMATRIX[i][j]);
-                    }
-                    System.out.println();
-                }
+                board.printDebugger();
             }
         });
-
     }
+
     void setPauseButton(String btnTitle){
         pauseButton.setText(btnTitle);
     }
@@ -82,7 +93,10 @@ public class TestGUI extends JFrame {
         //score =  board.getNumLinesRemoved();
         tfScore.setText(String.valueOf(score));
     }
-    void setTfNextShape(){
-
+    void setTfNextShape(int index){
+        tfNextShape.setText(String.valueOf(index));
+    }
+    void setTfNextShapeRotation(int rotationIndex){
+        tfNextShapeRotation.setText(String.valueOf(rotationIndex));
     }
 }
