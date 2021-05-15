@@ -81,6 +81,7 @@ public class TestGUI extends JFrame {
                 int [][] BOARDMATRIX = board.getBoard();
                 System.out.println("Action Listener down Button:");
                 board.printDebugger();
+
             }
         });
     }
@@ -95,8 +96,10 @@ public class TestGUI extends JFrame {
     }
     void setTfNextShape(int index){
         tfNextShape.setText(String.valueOf(index));
+        board.getNextShape();
     }
     void setTfNextShapeRotation(int rotationIndex){
         tfNextShapeRotation.setText(String.valueOf(rotationIndex));
+        board.getNextRotationIndex();
     }
 }

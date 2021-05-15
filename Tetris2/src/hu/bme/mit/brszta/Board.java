@@ -1,11 +1,9 @@
 package hu.bme.mit.brszta;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
 
 public class Board {
     private static int curX = 0;
@@ -101,30 +99,7 @@ public class Board {
             shapeRotationBuffer.add(x);
             //System.out.println("shapeBuffer: " + y);
             //System.out.println("shapeRotationBuffer: " + x);
-
         }
-        /*
-        System.out.println("lastshapeBuffer: " + shapeBuffer.get(shapeBuffer.size()-1));
-        System.out.println("lastshapeRotationBuffer: " + shapeRotationBuffer.get(shapeRotationBuffer.size()-1));
-        System.out.println("lastshapeBufferindex: " + (shapeBuffer.size()-1));
-        System.out.println("lastshapeRotationBufferindex: " + (shapeRotationBuffer.size()-1));
-         */
-    }
-    public int getNumLinesRemoved(){
-        return numLinesRemoved;
-    }
-
-    public void addRandomShape(){
-        //Hozzáad egy random alakztatot a board tetejéhez és elforgatja véletlenszerűen
-        //DEBUG
-        System.out.println("Debug, Board o, addRandomShape fgv");
-        //DEBUG
-
-        curX = BOARD_WIDTH/2;
-        curY = 0;
-        //Hozzáad egy új random shapet
-        generateRandomShapes(1);
-        //A setRandomShapet kicserélem egy setShape fgv-re mert itt a boardban generálom le a shape számát
         //curPiece.setRandomShape();
         index = shapeBuffer.get(0);
         rotationIndex = shapeRotationBuffer.get(0);
@@ -136,6 +111,32 @@ public class Board {
         //Ezzel a remove-val kitörlöm a 0 indexen lévő számot.
         shapeBuffer.remove(0);
         shapeRotationBuffer.remove(0);
+        /*
+        System.out.println("lastshapeBuffer: " + shapeBuffer.get(shapeBuffer.size()-1));
+        System.out.println("lastshapeRotationBuffer: " + shapeRotationBuffer.get(shapeRotationBuffer.size()-1));
+        System.out.println("lastshapeBufferindex: " + (shapeBuffer.size()-1));
+        System.out.println("lastshapeRotationBufferindex: " + (shapeRotationBuffer.size()-1));
+         */
+    }
+    public int getNumLinesRemoved(){
+        return numLinesRemoved;
+    }
+
+    private
+
+    void addRandomShape(){
+        //Hozzáad egy random alakztatot a board tetejéhez és elforgatja véletlenszerűen
+        //DEBUG
+        System.out.println("Debug, Board o, addRandomShape fgv");
+        //DEBUG
+
+        curX = BOARD_WIDTH/2;
+        curY = 0;
+
+        //Hozzáad egy új random shapet
+        generateRandomShapes(1);
+        //A setRandomShapet kicserélem egy setShape fgv-re mert itt a boardban generálom le a shape számát
+
         //index = curPiece.getShapeIndex();
         //curPiece.setShape(index);
         //var r = new Random();
@@ -187,6 +188,14 @@ public class Board {
         testGUI.setTfNextShape(nextIndex);
         testGUI.setTfNextShapeRotation(nextRotationIndex);
     }
+
+    public int getNextShape(){
+        return nextIndex;
+    }
+    public int getNextRotationIndex(){
+        return nextRotationIndex;
+    }
+
 
     public void addShape(int x, int y) {
         System.out.println("Debug, Board o, addShape fgv:");
@@ -412,7 +421,7 @@ public class Board {
         removeFullLines();
     }
 
-    void printDebugger(){
+    public void printDebugger(){
         for(int i = 0; i< 20;i++) {
             for (int j = 0; j < 10; j++) {
                 System.out.print(BOARDMATRIX[i][j]);
