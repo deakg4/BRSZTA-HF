@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUI_Package.Settings_Form">
+  <grid id="27dc6" binding="Panel_Background" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="766" height="588"/>
+    </constraints>
+    <properties>
+      <maximumSize width="600" height="400"/>
+      <minimumSize width="600" height="400"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="155d7" binding="Tab_Main">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <focusTraversalPolicyProvider value="false"/>
+          <inheritsPopupMenu value="false"/>
+          <name value=""/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="89042" binding="Tab_Scoreboard" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Scoreboard"/>
+            </constraints>
+            <properties>
+              <maximumSize width="600" height="400"/>
+              <minimumSize width="600" height="400"/>
+              <name value=""/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <scrollpane id="b27ce" binding="ScrollPane_Table">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <enabled value="true"/>
+                  <focusable value="false"/>
+                  <font size="12"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="e9e03" class="javax.swing.JTable" binding="Table_Score">
+                    <constraints/>
+                    <properties>
+                      <font size="12" style="1"/>
+                    </properties>
+                  </component>
+                </children>
+              </scrollpane>
+              <component id="54bdd" class="javax.swing.JButton" binding="Button_OK_2">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="200" height="30"/>
+                    <maximum-size width="200" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="OK"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="a943a" binding="Tab_Network" layout-manager="GridLayoutManager" row-count="12" column-count="10" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Network Settings"/>
+            </constraints>
+            <properties>
+              <maximumSize width="600" height="400"/>
+              <minimumSize width="600" height="400"/>
+              <visible value="false"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="89119" class="javax.swing.JLabel" binding="Label_IP_Address">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="IP Address: "/>
+                </properties>
+              </component>
+              <component id="7f208" class="javax.swing.JFormattedTextField" binding="TextField_IP_Address_1">
+                <constraints>
+                  <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="30"/>
+                    <preferred-size width="58" height="30"/>
+                    <maximum-size width="50" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <opaque value="true"/>
+                </properties>
+              </component>
+              <component id="9111e" class="javax.swing.JLabel" binding="Label_Port">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <horizontalTextPosition value="11"/>
+                  <text value="Port: "/>
+                </properties>
+              </component>
+              <component id="5802c" class="javax.swing.JFormattedTextField" binding="TextField_Port">
+                <constraints>
+                  <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="30"/>
+                    <preferred-size width="58" height="30"/>
+                    <maximum-size width="50" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                </properties>
+              </component>
+              <component id="f3d3b" class="javax.swing.JButton" binding="Button_Connect_Server">
+                <constraints>
+                  <grid row="5" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="30"/>
+                    <maximum-size width="140" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Connect"/>
+                  <visible value="true"/>
+                </properties>
+              </component>
+              <vspacer id="45d02">
+                <constraints>
+                  <grid row="8" column="0" row-span="3" col-span="10" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="150"/>
+                    <preferred-size width="-1" height="150"/>
+                    <maximum-size width="-1" height="150"/>
+                  </grid>
+                </constraints>
+              </vspacer>
+              <component id="dbba2" class="javax.swing.JButton" binding="Button_Disconnect_Server">
+                <constraints>
+                  <grid row="6" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="30"/>
+                    <maximum-size width="140" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Disconnect"/>
+                </properties>
+              </component>
+              <component id="398db" class="javax.swing.JFormattedTextField" binding="TextField_Conn_Status">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="320" height="30"/>
+                    <preferred-size width="320" height="-1"/>
+                    <maximum-size width="320" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="0"/>
+                </properties>
+              </component>
+              <component id="5f93f" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="3" height="-1"/>
+                    <preferred-size width="26" height="16"/>
+                    <maximum-size width="3" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <horizontalAlignment value="0"/>
+                  <text value="."/>
+                </properties>
+              </component>
+              <component id="57016" class="javax.swing.JFormattedTextField" binding="TextField_IP_Address_3">
+                <constraints>
+                  <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="30"/>
+                    <preferred-size width="55" height="30"/>
+                    <maximum-size width="50" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <opaque value="true"/>
+                </properties>
+              </component>
+              <component id="b490f" class="javax.swing.JFormattedTextField" binding="TextField_IP_Address_4">
+                <constraints>
+                  <grid row="1" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="30"/>
+                    <preferred-size width="47" height="30"/>
+                    <maximum-size width="50" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <opaque value="true"/>
+                </properties>
+              </component>
+              <component id="60968" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="3" height="-1"/>
+                    <preferred-size width="32" height="16"/>
+                    <maximum-size width="3" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <requestFocusEnabled value="true"/>
+                  <text value="."/>
+                </properties>
+              </component>
+              <component id="fa287" class="javax.swing.JLabel">
+                <constraints>
+                  <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="3" height="-1"/>
+                    <preferred-size width="28" height="22"/>
+                    <maximum-size width="3" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <text value="."/>
+                </properties>
+              </component>
+              <component id="98f86" class="javax.swing.JFormattedTextField" binding="TextField_IP_Address_2">
+                <constraints>
+                  <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="50" height="30"/>
+                    <preferred-size width="58" height="30"/>
+                    <maximum-size width="50" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <opaque value="true"/>
+                </properties>
+              </component>
+              <vspacer id="39f83">
+                <constraints>
+                  <grid row="3" column="4" row-span="1" col-span="5" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="10"/>
+                    <preferred-size width="-1" height="10"/>
+                    <maximum-size width="-1" height="10"/>
+                  </grid>
+                </constraints>
+              </vspacer>
+              <vspacer id="29733">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="8" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="5"/>
+                    <preferred-size width="-1" height="5"/>
+                    <maximum-size width="-1" height="5"/>
+                  </grid>
+                </constraints>
+              </vspacer>
+              <component id="ca6c8" class="javax.swing.JButton" binding="Button_OK">
+                <constraints>
+                  <grid row="11" column="8" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="200" height="30"/>
+                    <maximum-size width="200" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="OK"/>
+                </properties>
+              </component>
+              <hspacer id="92cf5">
+                <constraints>
+                  <grid row="0" column="0" row-span="7" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="10" height="-1"/>
+                    <preferred-size width="10" height="-1"/>
+                    <maximum-size width="10" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <hspacer id="3a559">
+                <constraints>
+                  <grid row="0" column="9" row-span="7" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="400" height="-1"/>
+                    <preferred-size width="400" height="-1"/>
+                    <maximum-size width="400" height="-1"/>
+                  </grid>
+                </constraints>
+              </hspacer>
+              <component id="546e4" class="javax.swing.JButton" binding="Button_Disconnect_Client">
+                <constraints>
+                  <grid row="6" column="5" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="30"/>
+                    <maximum-size width="140" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Disconnect"/>
+                </properties>
+              </component>
+              <component id="c09a7" class="javax.swing.JButton" binding="Button_Connect_Client">
+                <constraints>
+                  <grid row="5" column="5" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="30"/>
+                    <maximum-size width="140" height="30"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Connect"/>
+                </properties>
+              </component>
+              <component id="9582" class="javax.swing.JLabel" binding="Label_Server">
+                <constraints>
+                  <grid row="7" column="2" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="-1"/>
+                    <preferred-size width="140" height="-1"/>
+                    <maximum-size width="140" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Server"/>
+                </properties>
+              </component>
+              <component id="9f190" class="javax.swing.JLabel" binding="Label_Client">
+                <constraints>
+                  <grid row="7" column="5" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="140" height="-1"/>
+                    <preferred-size width="140" height="-1"/>
+                    <maximum-size width="140" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font size="16"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <inheritsPopupMenu value="true"/>
+                  <text value="Client"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>
